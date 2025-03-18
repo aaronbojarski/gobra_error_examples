@@ -1,0 +1,58 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+# Copyright (c) 2011-2020 ETH Zurich.
+
+name: Verify error examples
+
+on:
+  push:
+    branches:
+    - master
+  pull_request: # run this workflow on every pull_request
+
+env:
+  headerOnly: 1
+  module: 'github.com/scionproto/scion'
+  includePaths: ''
+  assumeInjectivityOnInhale: '1'
+  parallelizeBranches: '0'
+  checkConsistency: '1'
+  imageVersion: 'latest'
+  mceMode: 'od'
+  requireTriggers: '1'
+  useZ3API: '0'
+  viperBackend: 'SILICON'
+  disableNL: '0'
+  unsafeWildcardOptimization: '0'
+  overflow: '0'
+  respectFunctionPrePermAmounts: '0'
+
+jobs:
+  verify-deps:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the VerifiedSCION repository
+        uses: actions/checkout@v3
+      - name: Verify package 'slice_type_error'
+        uses: viperproject/gobra-action@main
+        with:
+          packages: 'slice_type_error'
+          timeout: 10m
+          headerOnly: ${{ env.headerOnly }}
+          module: ${{ env.module }}
+          includePaths: ${{ env.includePaths }}
+          assumeInjectivityOnInhale: ${{ env.assumeInjectivityOnInhale }}
+          checkConsistency: ${{ env.checkConsistency }}
+          statsFile: '/stats/stats_addr.json'
+          parallelizeBranches: ${{ env.parallelizeBranches }}
+          imageVersion: ${{ env.imageVersion }}
+          mceMode: ${{ env.mceMode }}
+          requireTriggers: ${{ env.requireTriggers }}
+          overflow: ${{ env.overflow }}
+          useZ3API: ${{ env.useZ3API }}
+          disableNL: ${{ env.disableNL }}
+          viperBackend: ${{ env.viperBackend }}
+          unsafeWildcardOptimization: ${{ env.unsafeWildcardOptimization }}
+          respectFunctionPrePermAmounts: ${{ env.respectFunctionPrePermAmounts }}

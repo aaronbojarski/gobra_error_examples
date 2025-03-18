@@ -1,0 +1,17 @@
+
+// +gobra
+
+package slice_type_error
+
+const bufSize = 9000
+
+type packet struct {
+	rawPacket []byte
+	buffer *[bufSize]byte
+}
+
+// initPacket configures the given blank packet (and returns it, for convenience).
+func (p *packet) init() *packet {
+	p.rawPacket = p.buffer[:]
+	return p
+}
