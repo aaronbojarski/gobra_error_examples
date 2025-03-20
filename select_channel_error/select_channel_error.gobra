@@ -1,0 +1,18 @@
+
+// +gobra
+
+package select_channel_error
+
+
+type packet struct {
+	test int
+}
+
+// NOTE: This method is called runReceiver, as this is the function from the SCION router where the error occured.
+func runReceiver(procQs []chan *packet, pkt *packet) {
+    select {
+    case procQs[0] <- pkt:
+    default:
+        // Handle the case when sending on channel is not possible
+    }
+}
