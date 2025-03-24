@@ -1,0 +1,20 @@
+
+// +gobra
+
+package case_nil_error
+
+func someFunc() error {
+	return nil
+}
+
+func resolveInbound() (disp int) {
+
+	err := someFunc()
+
+	switch err {
+	case nil:
+		return 1
+	default:
+		return 2
+	}
+}

@@ -30,7 +30,33 @@ env:
   respectFunctionPrePermAmounts: '0'
 
 jobs:
-  verify-deps:
+  verify-case_nil_error:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the VerifiedSCION repository
+        uses: actions/checkout@v3
+      - name: Verify package 'case_nil_error'
+        uses: viperproject/gobra-action@main
+        with:
+          packages: 'case_nil_error'
+          timeout: 10m
+          headerOnly: ${{ env.headerOnly }}
+          module: ${{ env.module }}
+          includePaths: ${{ env.includePaths }}
+          assumeInjectivityOnInhale: ${{ env.assumeInjectivityOnInhale }}
+          checkConsistency: ${{ env.checkConsistency }}
+          statsFile: '/stats/stats_addr.json'
+          parallelizeBranches: ${{ env.parallelizeBranches }}
+          imageVersion: ${{ env.imageVersion }}
+          mceMode: ${{ env.mceMode }}
+          requireTriggers: ${{ env.requireTriggers }}
+          overflow: ${{ env.overflow }}
+          useZ3API: ${{ env.useZ3API }}
+          disableNL: ${{ env.disableNL }}
+          viperBackend: ${{ env.viperBackend }}
+          unsafeWildcardOptimization: ${{ env.unsafeWildcardOptimization }}
+          respectFunctionPrePermAmounts: ${{ env.respectFunctionPrePermAmounts }}
+  verify-const_in_func_error:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the VerifiedSCION repository
@@ -56,6 +82,11 @@ jobs:
           viperBackend: ${{ env.viperBackend }}
           unsafeWildcardOptimization: ${{ env.unsafeWildcardOptimization }}
           respectFunctionPrePermAmounts: ${{ env.respectFunctionPrePermAmounts }}
+  verify-select_channel_error:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the VerifiedSCION repository
+        uses: actions/checkout@v3
       - name: Verify package 'select_channel_error'
         uses: viperproject/gobra-action@main
         with:
@@ -77,6 +108,11 @@ jobs:
           viperBackend: ${{ env.viperBackend }}
           unsafeWildcardOptimization: ${{ env.unsafeWildcardOptimization }}
           respectFunctionPrePermAmounts: ${{ env.respectFunctionPrePermAmounts }}
+  verify-slice_type_error:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the VerifiedSCION repository
+        uses: actions/checkout@v3      
       - name: Verify package 'slice_type_error'
         uses: viperproject/gobra-action@main
         with:
