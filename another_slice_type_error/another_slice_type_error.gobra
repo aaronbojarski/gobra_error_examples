@@ -1,0 +1,23 @@
+
+// +gobra
+
+package another_slice_type_error
+
+type Key [16]byte
+
+type MACInput struct {
+	Key        []byte
+}
+
+trusted
+requires false
+func getKey() Key
+
+func prepareSCMP() MACInput {
+	key @ := getKey()
+
+	macInput :=  MACInput{
+		Key: key[:],
+	}
+	return macInput
+}

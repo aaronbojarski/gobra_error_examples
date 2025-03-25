@@ -134,3 +134,29 @@ jobs:
           viperBackend: ${{ env.viperBackend }}
           unsafeWildcardOptimization: ${{ env.unsafeWildcardOptimization }}
           respectFunctionPrePermAmounts: ${{ env.respectFunctionPrePermAmounts }}
+verify-another_slice_type_error:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the VerifiedSCION repository
+        uses: actions/checkout@v3      
+      - name: Verify package 'another_slice_type_error'
+        uses: viperproject/gobra-action@main
+        with:
+          packages: 'another_slice_type_error'
+          timeout: 10m
+          headerOnly: ${{ env.headerOnly }}
+          module: ${{ env.module }}
+          includePaths: ${{ env.includePaths }}
+          assumeInjectivityOnInhale: ${{ env.assumeInjectivityOnInhale }}
+          checkConsistency: ${{ env.checkConsistency }}
+          statsFile: '/stats/stats_addr.json'
+          parallelizeBranches: ${{ env.parallelizeBranches }}
+          imageVersion: ${{ env.imageVersion }}
+          mceMode: ${{ env.mceMode }}
+          requireTriggers: ${{ env.requireTriggers }}
+          overflow: ${{ env.overflow }}
+          useZ3API: ${{ env.useZ3API }}
+          disableNL: ${{ env.disableNL }}
+          viperBackend: ${{ env.viperBackend }}
+          unsafeWildcardOptimization: ${{ env.unsafeWildcardOptimization }}
+          respectFunctionPrePermAmounts: ${{ env.respectFunctionPrePermAmounts }}
