@@ -134,7 +134,7 @@ jobs:
           viperBackend: ${{ env.viperBackend }}
           unsafeWildcardOptimization: ${{ env.unsafeWildcardOptimization }}
           respectFunctionPrePermAmounts: ${{ env.respectFunctionPrePermAmounts }}
-verify-another_slice_type_error:
+  verify-another_slice_type_error:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the VerifiedSCION repository
